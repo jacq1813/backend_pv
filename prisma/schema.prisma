@@ -26,7 +26,7 @@ model ComissionScheme {
   dayMax        Int?     // allow null
   percentage    Decimal  @db.Decimal(5, 2)
   clientId      Int
-  client        Client   @relation(fields: [clientId], references: [id])
+  client        Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
 }
 
 model Voucher {
@@ -37,7 +37,7 @@ model Voucher {
   paymentDate   DateTime                     
   status        Boolean   @default(false)
   clientId      Int
-  client        Client    @relation(fields: [clientId], references: [id])
+  client        Client    @relation(fields: [clientId], references: [id], onDelete: Cascade)
   payment       Payment[]
 }
 

@@ -49,6 +49,41 @@ export const createClient = async (req: Request, res: Response) => {
   }
 };
 
+// actualizar cliente
+export const updateClient = async (req: Request, res: Response) => {
+  try {
+    const clientId = parseInt(req.params.id);
+    const updatedClient = req.body;
+    const client = await clientService.updateClient(clientId, updatedClient);
+    res.json({
+      success: true,
+      data: client
+    });
+  } catch (error: any) {
+    res.status(400).json({
+      success: false,
+      error: error.message
+    });
+  }
+}
+
+// eliminar cliente
+export const deleteClient = async (req: Request, res: Response) => {
+  try {
+    const clientId = parseInt(req.params.id);
+    const result = await clientService.deleteClient(clientId);
+    res.json({
+      success: true,
+      data: result
+    });
+  } catch (error: any) {
+    res.status(400).json({
+      success: false,
+      error: error.message
+    });
+  }
+};
+
 export const addCommissionScheme = async (req: Request, res: Response) => {
   try {
     const clientId = parseInt(req.params.clientId);

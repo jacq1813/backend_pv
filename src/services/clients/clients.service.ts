@@ -72,6 +72,43 @@ export const createClient = async (newClient: NewClientType) => {
   }
 };
 
+// Actualizar cliente
+export const updateClient = async (clientId: number, updatedClient: NewClientType) => {
+  try {
+    const { fullName } = updatedClient;
+
+    const client = await prisma.client.update({
+      where: { id: clientId },
+      data: { fullName },
+      include: {
+        clientScheme: true
+      }
+    });
+    
+    return {
+      clientId: client.id,
+      fullName: client.fullName,
+      balanceFavor: client.balanceFavor.toNumber(),
+      commissionSchemes: client.clientScheme
+    };
+  } catch (error: any) {
+    throw new Error('Error al actualizar cliente: ' + error.message);
+  }
+};
+
+// Eliminar cliente
+export const deleteClient = async (clientId: number) => {
+  try {
+    await prisma.client.delete({
+      where: { id: clientId }
+    });
+    
+    return { message: 'Cliente eliminado correctamente' };
+  } catch (error: any) {
+    throw new Error('Error al eliminar cliente: ' + error.message);
+  }
+};
+
 // Agregar esquema de comisión
 export const addCommissionScheme = async (newScheme: newComissionType) => {
   try {
