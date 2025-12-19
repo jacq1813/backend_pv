@@ -32,11 +32,11 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/commission', commissionRoutes);
 
 // Ruta de salud
-app.get('/health', (req, res) => {
+app.get('/status', (req, res) => {
   res.json({
     status: 'OK',
     timestamp: new Date().toISOString(),
-    service: 'Voucher Management API'
+    service: 'Estado de la API'
   });
 });
 
