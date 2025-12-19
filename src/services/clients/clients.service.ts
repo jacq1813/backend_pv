@@ -65,7 +65,6 @@ export const createClient = async (newClient: NewClientType) => {
       clientId: client.id,
       fullName: client.fullName,
       balanceFavor: client.balanceFavor.toNumber(),
-      vouchers: [],
       commissionSchemes: client.clientScheme
     };
   } catch (error: any) {
