@@ -1,0 +1,78 @@
+# DEPENDENCIAS
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+pnpm-lock.yaml
+
+# COMPILACIÓN
+dist/
+build/
+*.tsbuildinfo
+
+# PRISMA
+/generated/prisma
+/prisma/*.db
+/prisma/migrations/*.db
+.prisma/
+
+# ENTORNO Y VARIABLES
+.env
+.env.*.local
+.env.local
+.env.development
+.env.production
+!.env.example
+# SISTEMA OPERATIVO
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+# EDITORES E IDEs
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-*
+.project
+.classpath
+.c9/
+# LOGS
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# TEMPORALES
+tmp/
+temp/
+.tmp/
+.temp/
+.cache/
+.parcel-cache/
+# TESTS Y COBERTURA
+coverage/
+.nyc_output/
+jest-coverage/
+test-results/
+# PAQUETES
+*.tgz
+*.gz
+# MISCELÁNEOS
+.eslintcache
+.history/
+*.pid
+.pids/
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+# DOCKER
+docker-compose.override.yml

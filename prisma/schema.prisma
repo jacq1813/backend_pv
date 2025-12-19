@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+  output   = "./diagrama.png"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Client {
+  id              Int                @id @default(autoincrement())
+  fullName        String
+  balanceFavor    Decimal            @default(0) @db.Decimal(10, 2)
+  vouchers        Voucher[]
+  clientScheme    ComissionScheme[]
+}
+
+model ComissionScheme {
+  id            Int      @id @default(autoincrement())
+  dayMin        Int
+  dayMax        Int?     // allow null
+  percentage    Decimal  @db.Decimal(5, 2)
+  clientId      Int
+  client        Client   @relation(fields: [clientId], references: [id])
+}
+
+model Voucher {
+  id            Int       @id @default(autoincrement())
+  total         Decimal   @db.Decimal(10, 2) 
+  pending       Decimal   @db.Decimal(10, 2) 
+  createDate    DateTime  @default(now())  
+  paymentDate   DateTime                     
+  status        Boolean   @default(false)
+  clientId      Int
+  client        Client    @relation(fields: [clientId], references: [id])
+  payment       Payment[]
+}
+
+model Payment {
+  id           Int      @id @default(autoincrement())
+  amount       Decimal  @db.Decimal(10, 2)
+  lastPay      DateTime @default(now())
+  voucherId    Int
+  voucher      Voucher  @relation(fields: [voucherId], references: [id])
+}
