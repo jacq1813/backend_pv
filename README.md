@@ -34,14 +34,15 @@ Crear archivo .env en la raíz del proyecto:
 ```
 env
 DATABASE_URL="postgresql://usuario:contraseña@localhost:5432/prestavale_db"
-PORT=3000
-NODE_ENV=development
 ```
 
 4. Configurar base de datos
    bash
 
 ```
+# Instalar generador de prisma
+npm install -D prisma-erd-generator @mermaid-js/mermaid-cli
+
 # Ejecutar migraciones de Prisma
 npx prisma migrate dev --name init
 
