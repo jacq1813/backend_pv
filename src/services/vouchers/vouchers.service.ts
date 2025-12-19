@@ -20,10 +20,6 @@ export const createVoucher = async (newVoucher: NewVoucherType) => {
         paymentDate,
         status: false, // false = ACTIVO, true = PAGADO
         clientId
-      },
-      include: {
-        client: true,
-        payment: true
       }
     });
     
@@ -46,11 +42,7 @@ export const createVoucher = async (newVoucher: NewVoucherType) => {
 export const getVoucherById = async (voucherId: number) => {
   try {
     const voucher = await prisma.voucher.findUnique({
-      where: { id: voucherId },
-      include: {
-        client: true,
-        payment: true
-      }
+      where: { id: voucherId }
     });
     
     if (!voucher) throw new Error('Vale no encontrado');
@@ -75,10 +67,7 @@ export const getVoucherById = async (voucherId: number) => {
 export const getVouchersByClient = async (clientId: number) => {
   try {
     const vouchers = await prisma.voucher.findMany({
-      where: { clientId },
-      include: {
-        payment: true
-      }
+      where: { clientId }
     });
     
     return vouchers.map(voucher => ({
